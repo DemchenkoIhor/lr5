@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masa</title>
+    <style>
+        h1 {
+            text-align: center;
+            color: #494949;
+            font-size: 3.5em;
+        }
+
+        .head_form {
+            width: 60%;
+            margin-left: 20%;
+        }
+
+        .block {
+            text-align: center;
+            width: 40%;
+            margin-left: 30%;
+        }
+
+        .field {
+            width: 180px;
+        }
+
+        body {
+            background: url(https://st4.depositphotos.com/12328584/30788/v/450/depositphotos_307883270-stock-illustration-seamless-thin-linear-pattern-abstract.jpg);
+        }
+    </style>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="head_form">
+        <h1>Лабораторна робота №5. Оцінка збитків від наслідків надзвичайних ситуацій техногенного і природного
+            характеру.</h1>
+            <br>
+
+        <h2 class="text-center">Розрахунок маси наднормативних викидів забруднюючих речовин в атмосферне повітря</h1>
+    </div>
+
+    <div class="block">
+        <form action="/Tax" method="Post">
+            <div class="mb-3">
+                <label class="form-label">Назва речовини</label><br>
+                <select name="form_select" class="form-select">
+                    {{#each select_substances}}
+                    <option value="{{this.id_subst}}">{{this.name_sub}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Середнє значення масової концентрації речовини, мг/куб.м</label><br>
+                <input name="Rv" class="field form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Об'ємна витрата газопилового потоку від джерела викиду речовини,
+                    куб.м/с.</label><br>
+                <input name="Qv" class="field form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Час роботи джерела викиду речовини у режимі наднормативного викиду, год.
+                </label><br>
+                <input name="T" class="field form-control">
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Далі">
+        </form>
+
+    </div>
+
+</body>
+
+</html>
