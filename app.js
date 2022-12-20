@@ -47,7 +47,7 @@ app.post("/Tax", urlencodedParser, function (req, res) {
 
     res.render("tax.hbs", {
       select_substances: data,
-      massa: massa,
+      massa: massa.toFixed(3),
       gdk: data[0].gdk
     });
 
@@ -57,17 +57,38 @@ app.post("/Tax", urlencodedParser, function (req, res) {
 
 app.post("/Summa", urlencodedParser, function (req, res) {
   if (!req.body) return res.sendStatus(400);
-  let P, A, Kt, Kz;
+  console.log(req.body);
+  let P, A, ktNas, Kt,Kz;
   P = 6700;
   A = 1 / req.body.gdk;
-  Kt = req.body.K2;
-  Kz = (req.body.Rv2 == 0) ? 10 : req.body.Rv2 / req.body.gdk;
+
+  if (req.body.K1 < 100000)
+    ktNas = 1;
+  else if (req.body.K1 >= 100000 && req.body.K1 < 250000)
+    ktNas = 1.2;
+  else if (req.body.K1 >= 250000 && req.body.K1 < 500000)
+    ktNas = 1.35;
+  else if (req.body.K1 >= 500000 && req.body.K1 < 1000000)
+    ktNas = 1.55;
+  else
+    ktNas = 1.8;
+
+    Kt =ktNas*req.body.K2;
+  
+ Kz = (req.body.Rv2 == 0) ? 1 : req.body.Rv2 / req.body.gdk;
+  console.log(Kt);
+  console.log(A);
+  console.log(Kz);
+  console.log(req.body.massa );
+  console.log(P);
+
   const summa = req.body.massa * 1.1 * P * A * Kt * Kz;
   res.render("Summa.hbs", {
     summa: summa
 
   });
 });
+
 
 
 const port = 3000;
