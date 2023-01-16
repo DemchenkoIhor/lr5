@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masa</title>
+    <title>Main page</title>
     <style>
         h1 {
             text-align: center;
@@ -38,44 +38,25 @@
 </head>
 
 <body>
-
     <div class="head_form">
-        <h1>Лабораторна робота №5. Оцінка збитків від наслідків надзвичайних ситуацій техногенного і природного
-            характеру.</h1>
-            <br>
+        <h1>Оцінка потенційного ризику здоров’ю населення в залежності від якості води. </h1>
+        <br>
 
-        <h2 class="text-center">Розрахунок маси наднормативних викидів забруднюючих речовин в атмосферне повітря</h1>
+        <h2 class="text-center">Оберіть необіхдний показник</h1>
     </div>
 
-    <div class="block">
-        <form action="/Tax" method="Post">
-            <div class="mb-3">
-                <label class="form-label">Назва речовини</label><br>
-                <select name="form_select" class="form-select">
-                    {{#each select_substances}}
-                    <option value="{{this.id_subst}}">{{this.name_sub}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Середнє значення масової концентрації речовини, мг/куб.м</label><br>
-                <input name="Rv" class="field form-control">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Об'ємна витрата газопилового потоку від джерела викиду речовини,
-                    куб.м/с.</label><br>
-                <input name="Qv" class="field form-control">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Час роботи джерела викиду речовини у режимі наднормативного викиду, год.
-                </label><br>
-                <input name="T" class="field form-control">
-            </div>
-
-            <input type="submit" class="btn btn-primary" value="Далі">
-        </form>
+    <div class="list-group block">
+        <a href="/task1" class="list-group-item list-group-item-action"> Розмір збитків   від   втрати  життя  та  здоров'я  населення </a>
+        <a href="/task2" class="list-group-item list-group-item-action">Розрахунок збитків від руйнування та пошкодження основних фондів, знищення майна та продукції</a>
+        <a href="/task3" class="list-group-item list-group-item-action">Розрахунок збитків від вилучення або порушення сільськогосподарських угідь</a>
+        <a href="/task5" class="list-group-item list-group-item-action">Розрахунок збитків від втрат тваринництва</a>
+        <a href="/task6" class="list-group-item list-group-item-action">Розрахунок збитків від втрати деревини та інших лісових ресурсів</a>
+        <a href="/task7" class="list-group-item list-group-item-action">Ризик за показником природнього запаху і присмаку води</a>
+        <a href="/task8" class="list-group-item list-group-item-action">Розрахунок збитків від знищення або погіршення якості рекреаційних зон</a>
+        <a href="/task8" class="list-group-item list-group-item-action">Потенційний ризик епідемілогічної небезпеки питної води</a>
 
     </div>
+    </ul>
 
 </body>
 
