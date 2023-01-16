@@ -263,7 +263,7 @@ app.post("/task5", urlencodedParser, (req, res) => {
   let sumaCur = Number(req.body.SumaCur);
   const { N, B } = req.body;
 
-  let  sum = Number(N)*Number(B);
+  let sum = Number(N) * Number(B);
 
   res.render("task5_suma", { // task5_suma get  обрахунок в g
     suma: sum
@@ -295,13 +295,13 @@ app.post("/task6", urlencodedParser, (req, res) => {
     let S2 = 0;
 
     if (TypeForest == 1) {
-      S1 = data[0].group1 *k1* P;
+      S1 = data[0].group1 * k1 * P;
       S2 = (1 - k2) * data[0].group1 * P;
       suma = S1 + S2;
 
     }
     else {
-      S1 = data[0].group2 *k1* P;
+      S1 = data[0].group2 * k1 * P;
       S2 = (1 - k2) * data[0].group2 * P;
       suma = S1 + S2;
     }
@@ -310,6 +310,22 @@ app.post("/task6", urlencodedParser, (req, res) => {
       suma: suma.toFixed(2),
     });
 
+  });
+})
+
+app.get("/task7", (req, res) => {
+  res.render("task7");
+});
+
+app.post("/task7", urlencodedParser, (req, res) => {
+  console.log(req.body);
+  let sumaCur = Number(req.body.SumaCur);
+  const { P, P1, P2, S, M, K1, K2 } = req.body;
+
+  let sum = (Number(P) * Number(S) * Number(M)) + (Number(P1) * Number(S) * Number(M) * (Number(K1) / 100)) + (Number(P2) * Number(S) * Number(M) * (Number(K2) / 100));
+
+  res.render("task7_suma", { // task5_suma get  обрахунок в g
+    suma: sum.toFixed(2)
   });
 })
 
@@ -322,7 +338,7 @@ app.post("/task8", urlencodedParser, (req, res) => {
   let sumaCur = Number(req.body.SumaCur);
   const { Money, Days } = req.body;
 
-  let  sum = Number(Money)*Number(Days);
+  let sum = Number(Money) * Number(Days);
 
   res.render("task8_suma", { // task8_suma get  
     suma: sum
@@ -330,6 +346,95 @@ app.post("/task8", urlencodedParser, (req, res) => {
 })
 
 
+app.get("/task9", (req, res) => {
+  res.render("task9");
+});
+
+app.post("/task9", urlencodedParser, (req, res) => {
+  console.log(req.body);
+  const { A1, A2, Q1, Q2, k } = req.body;
+  //обрахувати Ф суми
+
+  let curSum = 0;
+  curSum = Number(A1) + Number(A2) + (Number(Q1) - Number(Q2))
+
+  let tax = [];
+  for (let i = 0; i < Number(k); i++) {
+    tax.push(i + 1);
+  }
+
+  res.render("task9_1", { // task2_2 get  обрахунок в g
+    taxes: tax,
+    tax_amount: tax.length,
+    suma: curSum
+  });
+})
+
+app.post("/task9_1", urlencodedParser, (req, res) => {
+  console.log(req.body);
+  const { tax, SumaCur } = req.body;
+  //обрахувати Ф суми
+
+  let sum = Number(SumaCur);
+
+  for (let i = 0; i < tax.length; i++) {
+    sum += Number(tax[i]);
+  }
+
+  res.render("task9_suma", { // task8_suma get  
+    suma: sum
+  });
+})
+
+
+app.get("/task11", function (req, res) {
+  bd.query("SELECT * FROM ecomon.lr6_task11; SELECT * FROM ecomon.lr6_task11_2;", function (err, data) {
+    if (err) return console.log(err);
+    res.render("task11.hbs", {
+      oblKof: data[0],
+      na: data[1]
+    });
+
+  });
+})
+
+app.post("/task11", urlencodedParser, (req, res) => {
+  const { yn, n, L, F, m, na } = req.body;
+  console.log(req.body);
+  let Suma = 0;
+  let V = 0;
+  V = Number(F) * Number(m) * Number(na);
+  Suma = Number(yn) * Number(n) * V * Number(L);
+
+  res.render("task11_suma", { // task8_suma get  
+    suma: Suma
+  });
+
+})
+
+app.get("/task12", function (req, res) {
+  bd.query("SELECT * FROM ecomon.lr6_task11; SELECT * FROM ecomon.lr6_task11_2;", function (err, data) {
+    if (err) return console.log(err);
+    res.render("task12.hbs", {
+      oblKof: data[0],
+      na: data[1]
+    });
+
+  });
+})
+
+app.post("/task12", urlencodedParser, (req, res) => {
+  const { yn, n, M, L, } = req.body;
+  console.log(req.body);
+  let Suma = 0;
+
+  Suma = Number(yn) * Number(n) * Number(L) * Number(M);
+
+  res.render("task12_suma", { // task8_suma get  
+    suma: Suma.toFixed(2)
+  });
+
+})
 
 
 
